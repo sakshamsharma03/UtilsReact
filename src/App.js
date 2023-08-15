@@ -3,10 +3,10 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm.js";
 import PropTypes from "prop-types";
-import About from "./components/About";
+
 import Alert from "./components/Alert";
 //import { Route, Router } from "react-router-dom";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+//import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export default function App() {
   const [Mode, setMode] = useState("light");
@@ -16,6 +16,10 @@ export default function App() {
       msg: message,
       type: type,
     });
+    setInterval(()=>
+    {
+      setAlert(null);
+    },1500);
   };
   const toggleMode = () => {
     if (Mode === "light") {
@@ -37,6 +41,7 @@ export default function App() {
   return (
     <>
      
+     
         <Navbar
           title="TextUtils"
           about="About Us"
@@ -48,11 +53,7 @@ export default function App() {
         <div className="container">
           <TextForm heading="Enter Text to Analyze" mode={Mode} />
         </div>
-        <Router>
-          <Routes>
-            <Route path='/about' element={<About/>}></Route>
-          </Routes>
-        </Router>
+          
     </>
   );
 }
